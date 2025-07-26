@@ -16,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import MoreInfo from './components/Dashboard/MoreInfo'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import TaskDetailsPage from './components/Home/AddDetailForm'
 
 const apiUrl = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
 
@@ -66,6 +67,7 @@ function App() {
       <Route path='/CreateTask' element={check ? <CreateTask /> : <Navigate to="/Login" />} />
       <Route path='/:taskId/AddDetailForm' element={check ? <AddDetailForm /> : <Navigate to="/Login" />} />
       <Route path='/:taskId/MoreInfo' element={check ? <MoreInfo /> : <Navigate to="/Login" />} />
+      <Route path='/:taskId/TaskDetailsPage' element={check ? <TaskDetailsPage /> : <Navigate to="/Login" />} />
     </Routes>
       </AnimatePresence>
     </div>

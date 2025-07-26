@@ -15,6 +15,7 @@ import { HiOutlineIdentification } from 'react-icons/hi';
 
 const apiUrl = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
 
+
 const TaskDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -134,7 +135,7 @@ const TaskDetails = () => {
             value={new Date(task.createdAt).toLocaleString('ar-EG')}
             icon={FaCalendarAlt}
           />
-       <Link to={`/${task._id}/MoreInfo`}> <button className='bg-blue-500 text-white py-2 px-5 rounded-md '>معلومات اضافية</button></Link>
+       <Link to={`/${task._id}/TaskDetailsPage`}> <button className='bg-blue-500 text-white py-2 px-5 rounded-md '>معلومات اضافية</button></Link>
         </div>
 
 
