@@ -17,6 +17,7 @@ import MoreInfo from './components/Dashboard/MoreInfo'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import TaskDetailsPage from './components/Home/AddDetailForm'
+import AddDetail from './components/Home/AddDetail'
 
 const apiUrl = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
 
@@ -68,6 +69,7 @@ function App() {
       <Route path='/:taskId/AddDetailForm' element={check ? <AddDetailForm /> : <Navigate to="/Login" />} />
       <Route path='/:taskId/MoreInfo' element={check ? <MoreInfo /> : <Navigate to="/Login" />} />
       <Route path='/:taskId/TaskDetailsPage' element={check ? <TaskDetailsPage /> : <Navigate to="/Login" />} />
+      <Route path='/:taskId/AddDetail' element={check ? <AddDetail /> : <Navigate to="/Login" />} />
     </Routes>
       </AnimatePresence>
     </div>

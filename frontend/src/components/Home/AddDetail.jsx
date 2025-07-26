@@ -7,7 +7,7 @@ import Menu from '../Menu/Menu';
 const apiUrl = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
 
 
-const TaskDetailsPage = () => {
+const AddDetail = () => {
   const { taskId } = useParams();
   const [description, setDescription] = useState('');
   const [details, setDetails] = useState([]);
@@ -127,12 +127,7 @@ const TaskDetailsPage = () => {
 
                     {/* ✅ مربع إنجاز المهمة */}
                     <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                      <input
-                        type="checkbox"
-                        checked={detail.done}
-                        onChange={() => handleToggleDone(detail._id, detail.done)}
-                        className="w-5 h-5"
-                      />
+                    
                       {detail.done ? 'تم الإنجاز ✅' : 'غير منجز ❌'}
                     </label>
                   </div>
@@ -146,4 +141,4 @@ const TaskDetailsPage = () => {
   );
 };
 
-export default TaskDetailsPage;
+export default AddDetail;

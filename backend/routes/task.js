@@ -4,6 +4,7 @@ const router = express.Router();
 const taskController = require("../controllers/taskControllers");
 const auth = require("../middleware/auth")
 
+router.post('/tasks/:taskId/details/:detailId/change', taskController.handleToggleDone);
 router.get("/", taskController.getTasks);
 router.post("/", taskController.createTask);
 router.get("/user-tasks",auth, taskController.getUserTasks);

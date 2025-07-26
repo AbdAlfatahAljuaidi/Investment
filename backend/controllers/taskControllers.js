@@ -170,3 +170,27 @@ exports.getDetails = async (req, res) => {
     res.status(500).json({ message: 'حدث خطأ أثناء جلب التفاصيل' });
   }
 }
+
+// PATCH /api/tasks/:taskId/details/:detailId
+exports.handleToggleDone = async (req, res) => {
+  const { taskId, detailId } = req.params;
+  const { done } = req.body;
+
+  try {
+    const task = await Task.findOneAndUpdate(
+      { _id: taskId, "details._id": detailId },
+      { $set: { "details.$.done": done } },
+      { new: true }
+    );
+
+    if (!task) {
+      return res.status(404).json({ error: "المهمة أو التفصيل غير موجود" });
+    }
+
+    res.json({ message: "تم تحديث حالة الإنجاز", task });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "فشل التحديث" });
+  }
+};
+
