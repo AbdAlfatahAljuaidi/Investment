@@ -4,6 +4,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Menu from '../Menu/Menu'
 
+const apiUrl = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
+
 const EditTask = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -29,7 +31,7 @@ const EditTask = () => {
     // جلب بيانات المهمة لتعبئة النموذج
     const fetchTask = async () => {
       try {
-        const res = await axios.get(`http://localhost:4001/api/tasks/${id}`);
+        const res = await axios.get(`${apiUrl}/api/tasks/${id}`);
         setFormData(res.data);
       } catch (err) {
         toast.error('فشل في تحميل بيانات المهمة');
@@ -48,7 +50,7 @@ const EditTask = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:4001/api/tasks/${id}`, formData);
+      await axios.put(`${apiUrl}/api/tasks/${id}`, formData);
       toast.success('تم تحديث المهمة بنجاح');
       navigate('/tasks');
     } catch (err) {

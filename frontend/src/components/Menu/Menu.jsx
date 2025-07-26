@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaTachometerAlt, FaSignOutAlt } from 'react-icons/fa';
 import axios from 'axios';
 
+const apiUrl = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
+
 const Menu = () => {
   const navigate = useNavigate();
   const [role, setRole] = useState(false);
@@ -10,7 +12,7 @@ const Menu = () => {
   useEffect(() => {
     const fetchRole = async () => {
       try {
-        const res = await axios.get('http://localhost:4001/user-role', {
+        const res = await axios.get(`${apiUrl}/user-role`, {
           withCredentials: true
         });
         setRole(res.data.role);

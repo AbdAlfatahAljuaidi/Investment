@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+const apiUrl = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
+
 const Table = () => {
   const [tasks, setTasks] = useState([]);
 
   const fetchTasks = async () => {
     try {
-      const res = await axios.get('http://localhost:4001/api/tasks');
+      const res = await axios.get(`${apiUrl}/api/tasks`);
       if (Array.isArray(res.data)) {
         setTasks(res.data);
       } else {
@@ -21,7 +23,7 @@ const Table = () => {
 
   const deleteTask = async (id) => {
     try {
-      await axios.delete(`http://localhost:4001/api/tasks/${id}`);
+      await axios.delete(`${apiUrl}/api/tasks/${id}`);
       setTasks(tasks.filter(task => task._id !== id));
     } catch (err) {
       console.error('فشل الحذف:', err);

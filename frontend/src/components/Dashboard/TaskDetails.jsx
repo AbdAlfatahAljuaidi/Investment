@@ -13,6 +13,8 @@ import {
 import { MdCategory, MdOutlineLocationOn } from 'react-icons/md';
 import { HiOutlineIdentification } from 'react-icons/hi';
 
+const apiUrl = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
+
 const TaskDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ const TaskDetails = () => {
   useEffect(() => {
     const fetchTask = async () => {
       try {
-        const res = await axios.get(`http://localhost:4001/api/tasks/${id}`, {
+        const res = await axios.get(`${apiUrl}/api/tasks/${id}`, {
           withCredentials: true,
         });
         setTask(res.data);

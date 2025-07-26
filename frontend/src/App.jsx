@@ -17,6 +17,8 @@ import MoreInfo from './components/Dashboard/MoreInfo'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
+const apiUrl = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
+
 function App() {
   const location = useLocation()
   const [check,setCheck] = useState(false)
@@ -26,7 +28,7 @@ function App() {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get("http://localhost:4001/verifyUserToken", {
+        const response = await axios.get(`${apiUrl}/verifyUserToken`, {
           withCredentials: true
         });
         if(response.data.error==false){

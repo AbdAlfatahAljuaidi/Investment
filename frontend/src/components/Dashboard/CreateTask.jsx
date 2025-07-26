@@ -3,6 +3,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import Menu from '../Menu/Menu';
 
+const apiUrl = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
+
 const CreateTask = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -25,7 +27,7 @@ const CreateTask = () => {
   useEffect(() => {
     const fetchNames = async () => {
       try {
-        const response = await axios.get('http://localhost:4001/api/tasks/getNames');
+        const response = await axios.get(`${apiUrl}/api/tasks/getNames`);
         setNames(response.data.names);
       } catch (err) {
         console.log(err);
@@ -45,7 +47,7 @@ const CreateTask = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:4001/api/tasks', formData);
+      await axios.post(`${apiUrl}/api/tasks`, formData);
       toast.success('تم إنشاء المهمة بنجاح');
       setFormData({
         name: '',

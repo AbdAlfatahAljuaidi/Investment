@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Menu from '../Menu/Menu';
 
+const apiUrl = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
+
 const Task = () => {
   const { id } = useParams();
   const [task, setTask] = useState(null);
@@ -13,7 +15,7 @@ const Task = () => {
   useEffect(() => {
     const fetchTask = async () => {
       try {
-        const res = await axios.get(`http://localhost:4001/api/tasks/${id}`, {
+        const res = await axios.get(`${apiUrl}/api/tasks/${id}`, {
           withCredentials: true,
         });
         console.log(res.data);
@@ -36,7 +38,7 @@ const Task = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:4001/api/tasks/${id}`, editedTask, {
+      await axios.put(`${apiUrl}/api/tasks/${id}`, editedTask, {
         withCredentials: true,
       });
       alert("تم تحديث المهمة بنجاح");

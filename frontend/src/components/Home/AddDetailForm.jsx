@@ -3,6 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import Menu from '../Menu/Menu';
+const apiUrl = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
 
 const TaskDetailsPage = () => {
   const { taskId } = useParams();
@@ -13,7 +14,7 @@ const TaskDetailsPage = () => {
   // جلب التفاصيل من الـ backend
   const fetchDetails = async () => {
     try {
-      const res = await axios.get(`http://localhost:4001/api/tasks/${taskId}/details`, {
+      const res = await axios.get(`${apiUrl}/api/tasks/${taskId}/details`, {
         withCredentials: true,
       });
       setDetails(res.data);
@@ -39,7 +40,7 @@ const TaskDetailsPage = () => {
 
     try {
       await axios.post(
-        `http://localhost:4001/api/tasks/${taskId}/details`,
+        `${apiUrl}/api/tasks/${taskId}/details`,
         { description },
         { withCredentials: true }
       );

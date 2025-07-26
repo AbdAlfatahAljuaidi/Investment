@@ -4,13 +4,15 @@ import Menu from '../Menu/Menu';
 import { FaUserTie, FaMapMarkerAlt, FaIndustry } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
+const apiUrl = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
+
 const Home = () => {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get("http://localhost:4001/api/tasks/user-tasks", {
+        const response = await axios.get(`${apiUrl}/api/tasks/user-tasks`, {
           withCredentials: true
         });
         setTasks(response.data);

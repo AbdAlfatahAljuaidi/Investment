@@ -7,6 +7,8 @@ import { Link,useNavigate } from 'react-router-dom';
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
+const apiUrl = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
+
 const Signup = () => {
 
     const navigate = useNavigate()
@@ -30,7 +32,7 @@ const Signup = () => {
     try {
         setDisable(true)
       const res = await axios.post(
-        "http://localhost:4001/signup",
+        `${apiUrl}/signup`,
         form,
         { withCredentials: true }
       );
