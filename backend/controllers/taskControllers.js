@@ -55,10 +55,10 @@ exports.getUserTasks = async (req, res) => {
     const userName = decoded.name;
  
 
-    const tasks = await Task.find({ name: userName });
+    const tasks = await Task.find({ name: userName, done: false });
  
 
-    res.status(200).json(tasks);
+    res.status(200).json(tasks);1
   } catch (err) {
     console.error("❌ حدث خطأ:", err);
     res.status(500).json({ error: "حدث خطأ", err });

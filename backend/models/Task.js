@@ -65,7 +65,10 @@ const TaskSchema = new mongoose.Schema({
       done: { type: Boolean, default: false },
       time:{type:Date , defult:Date.now}
     }
-  ]
+  ],
+  done:{
+    type:Boolean
+  }
   
 }, { timestamps: true });
 

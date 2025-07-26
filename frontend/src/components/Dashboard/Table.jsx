@@ -6,7 +6,9 @@ const apiUrl = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
 
 const Table = () => {
   const [tasks, setTasks] = useState([]);
+  const [filter, setFilter] = useState('all'); // ✅ حالة الفلتر
 
+  // ✅ جلب المهام
   const fetchTasks = async () => {
     try {
       const res = await axios.get(`${apiUrl}/api/tasks`);
@@ -21,6 +23,7 @@ const Table = () => {
     }
   };
 
+  // ✅ حذف مهمة
   const deleteTask = async (id) => {
     try {
       await axios.delete(`${apiUrl}/api/tasks/${id}`);
@@ -34,6 +37,13 @@ const Table = () => {
     fetchTasks();
   }, []);
 
+  // ✅ تصفية المهام حسب الفلتر
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === 'all') return true;
+    if (filter === 'done') return task.done === true;
+    if (filter === 'notDone') return task.done === false;
+  });
+
   return (
     <div className="max-w-6xl mx-auto mt-10 px-4">
       <div className="flex justify-between items-center mb-6">
@@ -46,24 +56,58 @@ const Table = () => {
         </Link>
       </div>
 
+      {/* ✅ قائمة الفلاتر */}
+      <div className="flex gap-4 mb-6">
+        <button
+          onClick={() => setFilter('all')}
+          className={`px-4 py-1.5 rounded text-sm border ${
+            filter === 'all' ? 'bg-blue-600 text-white' : 'bg-white text-gray-700'
+          }`}
+        >
+          عرض الكل
+        </button>
+        <button
+          onClick={() => setFilter('notDone')}
+          className={`px-4 py-1.5 rounded text-sm border ${
+            filter === 'notDone' ? 'bg-blue-600 text-white' : 'bg-white text-gray-700'
+          }`}
+        >
+          غير منجزة
+        </button>
+        <button
+          onClick={() => setFilter('done')}
+          className={`px-4 py-1.5 rounded text-sm border ${
+            filter === 'done' ? 'bg-blue-600 text-white' : 'bg-white text-gray-700'
+          }`}
+        >
+          منجزة
+        </button>
+      </div>
+
       <div className="overflow-x-auto rounded-lg shadow border border-gray-200 bg-white">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-100">
             <tr>
-              <th className="p-3 text-right text-sm font-semibold text-gray-600 border"> اسم الموظف</th>
+              <th className="p-3 text-right text-sm font-semibold text-gray-600 border">اسم الموظف</th>
               <th className="p-3 text-right text-sm font-semibold text-gray-600 border">اسم المستثمر</th>
+              <th className="p-3 text-right text-sm font-semibold text-gray-600 border">تم إنجاز المهمة</th>
               <th className="p-3 text-right text-sm font-semibold text-gray-600 border">التاريخ</th>
               <th className="p-3 text-right text-sm font-semibold text-gray-600 border">العمليات</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-100">
-            {Array.isArray(tasks) && tasks.length > 0 ? (
-              tasks.map((task) => (
+            {Array.isArray(filteredTasks) && filteredTasks.length > 0 ? (
+              filteredTasks.map((task) => (
                 <tr key={task._id} className="hover:bg-gray-50">
                   <td className="p-3 border text-blue-600 hover:underline">
                     <Link to={`/tasks/${task._id}`}>{task.name}</Link>
                   </td>
                   <td className="p-3 border">{task.investorName}</td>
+                  <td className="p-3 border">
+                    <div className="flex justify-center items-center">
+                      <input type="checkbox" checked={task.done} disabled className="w-5 h-5" />
+                    </div>
+                  </td>
                   <td className="p-3 border">
                     {task.createdAt
                       ? new Date(task.createdAt).toLocaleString('ar-EG', {
@@ -95,7 +139,7 @@ const Table = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="4" className="text-center p-6 text-gray-500">
+                <td colSpan="5" className="text-center p-6 text-gray-500">
                   لا توجد مهام حالياً
                 </td>
               </tr>

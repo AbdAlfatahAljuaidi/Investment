@@ -20,7 +20,8 @@ const CreateTask = () => {
     siteArea: '',
     siteCode: '',
     investorName: '',
-    details: []
+    details: [],
+    done:false
   });
   const [names, setNames] = useState([]);
 
@@ -63,7 +64,7 @@ const CreateTask = () => {
         siteArea: '',
         siteCode: '',
         investorName: '',
-        details: []
+        details: [],
       });
     } catch (err) {
       toast.error(err.response?.data?.message || 'خطأ أثناء إنشاء المهمة');

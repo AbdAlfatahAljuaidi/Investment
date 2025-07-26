@@ -100,6 +100,7 @@ const TaskDetailsPage = () => {
 
           {/* التفاصيل */}
           <div>
+            
             <div className="flex items-center gap-2 mb-1">
               <span className="font-semibold text-gray-800">{detail.employee}</span>
               <span className="text-sm text-gray-500">
