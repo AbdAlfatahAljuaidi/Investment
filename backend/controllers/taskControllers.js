@@ -191,12 +191,12 @@ exports.handleToggleDone = async (req, res) => {
 const Email  = "abdalfatah.aljuaidi@gmail.com"
 const link = `https://investment-1-iu3q.onrender.com/${taskId}/TaskDetailsPage`;
 
-    await email(
-      Email,
-      link,
-      "Check Tasks Status",
-      "sendEmail",
-  )
+  //   await email(
+  //     Email,
+  //     link,
+  //     "Check Tasks Status",
+  //     "sendEmail",
+  // )
 
 
 
