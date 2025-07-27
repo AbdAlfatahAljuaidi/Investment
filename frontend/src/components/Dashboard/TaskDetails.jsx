@@ -135,7 +135,7 @@ const TaskDetails = () => {
             value={new Date(task.createdAt).toLocaleString('ar-EG')}
             icon={FaCalendarAlt}
           />
-       <Link to={`/${task._id}/AddDetail`}> <button className='bg-blue-500 text-white py-2 px-5 rounded-md '>معلومات اضافية</button></Link>
+       <Link to={`/${task._id}/TaskDetailsPage`}> <button className='bg-blue-500 text-white py-2 px-5 rounded-md '>معلومات اضافية</button></Link>
         </div>
 
 

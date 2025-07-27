@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
+
 
 const apiUrl = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
 
@@ -44,16 +47,67 @@ const Table = () => {
     if (filter === 'notDone') return task.done === false;
   });
 
+
+  const exportToExcel = () => {
+    const worksheetData = tasks.map((task) => ({
+      'اسم الموظف': task.name,
+      'اسم المستثمر': task.investorName,
+      'تم الإنجاز': task.done ? 'نعم' : 'لا',
+      'تاريخ الإنشاء': new Date(task.createdAt).toLocaleString('ar-EG', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
+      'توقع مذكرة أو اهتمام':task.noteType,
+      'نوع الأصل أو الخدمة':task.assetOrServiceType,
+      'ملكية الأرض':task.landOwnership,
+      'موقع المشروع':task.projectLocation,
+      'فئة المشروع':task.projectCategory,
+      'رقم ضابط الاتصال':task.contactOfficerNumber,
+      'اسم ضابط الاتصال':task.contactOfficerName,
+      'اسم ضابط الاتصال من الشركة البلد الأمين':task.externalOfficerName,
+      'الدولة':task.country,
+      ' مساحة الموقع':task.siteArea,
+      'رمز الموقع':task.siteCode,
+
+    }));
+  
+    const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'المهام');
+  
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: 'xlsx',
+      type: 'array',
+    });
+  
+    const data = new Blob([excelBuffer], { type: 'application/octet-stream' });
+    saveAs(data, 'قائمة_المهام.xlsx');
+  };
+  
+
   return (
     <div className="max-w-6xl mx-auto mt-10 px-4">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-gray-800">📋 قائمة المهام</h1>
+        <div>
+
         <Link
           to="/CreateTask"
           className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow"
-        >
+          >
           ➕ إنشاء مهمة
         </Link>
+     
+        <button
+  onClick={exportToExcel}
+  className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow mx-2"
+>
+  📥 تحميل Excel
+</button>
+          </div>
       </div>
 
       {/* ✅ قائمة الفلاتر */}

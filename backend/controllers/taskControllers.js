@@ -2,6 +2,7 @@
 const Task = require("../models/Task");
 const jwt = require('jsonwebtoken')
 const {User} = require("../models/user")
+const email = require("../utils/email")
 
 // إنشاء مهمة جديدة
 exports.createTask = async (req, res) => {
@@ -186,6 +187,19 @@ exports.handleToggleDone = async (req, res) => {
     if (!task) {
       return res.status(404).json({ error: "المهمة أو التفصيل غير موجود" });
     }
+
+const Email  = "abdalfatah.aljuaidi@gmail.com"
+const link = `https://investment-1-iu3q.onrender.com/${taskId}/TaskDetailsPage`;
+
+    await email(
+      Email,
+      link,
+      "Check Tasks Status",
+      "sendEmail",
+  )
+
+
+
 
     res.json({ message: "تم تحديث حالة الإنجاز", task });
   } catch (err) {
