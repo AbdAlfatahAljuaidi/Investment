@@ -15,7 +15,7 @@ const CreateTask = () => {
     projectCategory: '',
     contactOfficerNumber: '',
     contactOfficerName: '',
-    externalOfficerName: '',
+    externalOfficerName: 'None',
     country: '',
     siteArea: '',
     siteCode: '',
@@ -73,45 +73,54 @@ const CreateTask = () => {
 
   return (
     <div>
-      <Menu />
-      <div className="max-w-4xl mx-auto p-6 shadow-lg rounded-xl my-16">
-        <h1 className="text-2xl font-bold mb-6">عمل مهمة</h1>
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          
-          {/* حقل اختيار الاسم */}
-          <div>
-            <label className="block mb-1 font-medium">اسم الموظف</label>
-            <select
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 px-3 py-1.5 rounded text-sm"
-            >
-              <option value="">اختر موظفاً</option>
-              {names.map((n, idx) => (
-                <option key={idx} value={n}>{n}</option>
-              ))}
-            </select>
-          </div>
-
-          {/* بقية الحقول */}
-          {[
-            { name: 'noteType', label: 'نوع المذكرة أو الاهتمام' },
-            { name: 'assetOrServiceType', label: 'نوع الأصل أو الخدمة' },
-            { name: 'landOwnership', label: 'ملكية الأرض' },
-            { name: 'projectLocation', label: 'موقع المشروع' },
-            { name: 'projectCategory', label: 'فئة المشروع' },
-            { name: 'contactOfficerNumber', label: 'رقم ضابط الاتصال' },
-            { name: 'contactOfficerName', label: 'اسم ضابط الاتصال' },
-            { name: 'externalOfficerName', label: 'اسم ضابط الاتصال من الشركة/البلد الأمين' },
-            { name: 'country', label: 'الدولة' },
-            { name: 'siteArea', label: 'مساحة الموقع', type: 'number' },
-            { name: 'siteCode', label: 'رمز الموقع' },
-            { name: 'investorName', label: 'اسم المستثمر' }
-          ].map(({ name, label, type = 'text' }) => (
-            <div key={name}>
-              <label className="block mb-1 font-medium">{label}</label>
+    <Menu />
+    <div className="max-w-4xl mx-auto p-6 shadow-lg rounded-xl my-16">
+      <h1 className="text-2xl font-bold mb-6">عمل مهمة</h1>
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+  
+        {/* حقل اختيار الاسم */}
+        <div>
+          <label className="block mb-1 font-medium">اسم الموظف</label>
+          <select
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="w-full border border-gray-300 px-3 py-1.5 rounded text-sm"
+          >
+            <option value="">اختر موظفاً</option>
+            {names.map((n, idx) => (
+              <option key={idx} value={n}>{n}</option>
+            ))}
+          </select>
+        </div>
+  
+        {/* بقية الحقول */}
+        {[
+          { name: 'noteType', label: 'نوع المذكرة أو الاهتمام' },
+          { name: 'assetOrServiceType', label: 'نوع الأصل أو الخدمة' },
+          { name: 'landOwnership', label: 'ملكية الأرض' },
+          { name: 'projectLocation', label: 'موقع المشروع' },
+          { name: 'projectCategory', label: 'فئة المشروع' },
+          { name: 'contactOfficerNumber', label: 'رقم ضابط الاتصال' },
+          { name: 'contactOfficerName', label: 'اسم ضابط الاتصال' },
+          { name: 'country', label: 'الدولة' },
+          { name: 'siteArea', label: 'مساحة الموقع', type: 'number' },
+          { name: 'siteCode', label: 'رمز الموقع' },
+          { name: 'investorName', label: 'اسم المستثمر' }
+        ].map(({ name, label, type = 'text' }) => (
+          <div key={name}>
+            <label className="block mb-1 font-medium">{label}</label>
+            {['siteCode', 'projectLocation'].includes(name) ? (
+              <textarea
+                name={name}
+                value={formData[name]}
+                onChange={handleChange}
+                required
+                rows={3}
+                className="w-full border border-gray-300 px-3 py-1.5 rounded text-sm resize-y"
+              />
+            ) : (
               <input
                 type={type}
                 name={name}
@@ -120,21 +129,23 @@ const CreateTask = () => {
                 required
                 className="w-full border border-gray-300 px-3 py-1.5 rounded text-sm"
               />
-            </div>
-          ))}
-
-          {/* زر الإنشاء */}
-          <div className="col-span-2">
-            <button
-              type="submit"
-              className="w-full bg-blue-600 text-white py-1.5 rounded hover:bg-blue-700 text-sm"
-            >
-              إنشاء مهمة
-            </button>
+            )}
           </div>
-        </form>
-      </div>
+        ))}
+  
+        {/* زر الإنشاء */}
+        <div className="col-span-2">
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-1.5 rounded hover:bg-blue-700 text-sm"
+          >
+            إنشاء مهمة
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
+  
   );
 };
 

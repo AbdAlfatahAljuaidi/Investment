@@ -52,15 +52,18 @@ const TaskDetails = () => {
       </p>
     );
 
-  const DetailCard = ({ icon: Icon, label, value }) => (
-    <div className="flex items-center gap-3 border rounded-lg p-4 shadow-sm bg-gray-50">
-      {Icon && <Icon className="text-blue-600 w-6 h-6 flex-shrink-0" />}
-      <div>
-        <p className="text-gray-500 text-sm">{label}</p>
-        <p className="text-gray-800 font-semibold">{value || '—'}</p>
+    const DetailCard = ({ icon: Icon, label, value }) => (
+      <div className="flex items-start gap-3 border rounded-lg p-4 shadow-sm bg-gray-50">
+        {Icon && <Icon className="text-blue-600 w-6 h-6 flex-shrink-0 mt-1" />}
+        <div>
+          <p className="text-gray-500 text-sm">{label}</p>
+          <p className="text-gray-800 font-semibold whitespace-pre-wrap min-h-[3rem]">
+            {value || '—'}
+          </p>
+        </div>
       </div>
-    </div>
-  );
+    );
+    
 
   return (
     <div>
@@ -112,7 +115,7 @@ const TaskDetails = () => {
           />
           <DetailCard
             label="اسم ضابط الاتصال من الشركة/البلد الأمين"
-            value={task.externalOfficerName}
+            value={task.name}
             icon={FaUserTie}
           />
           <DetailCard label="الدولة" value={task.country} icon={FaGlobe} />
