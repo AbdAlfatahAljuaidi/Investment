@@ -107,6 +107,14 @@ const Table = () => {
 >
   📥 تحميل Excel
 </button>
+
+
+<Link
+          to="/Charts"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow"
+          >
+          المؤشر
+        </Link>
           </div>
       </div>
 

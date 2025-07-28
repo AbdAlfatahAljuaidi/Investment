@@ -18,6 +18,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import TaskDetailsPage from './components/Home/AddDetailForm'
 import AddDetail from './components/Home/AddDetail'
+import Charts from './components/Dashboard/Charts'
 
 const apiUrl = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
 
@@ -67,6 +68,7 @@ function App() {
             <Route path='/:taskId/MoreInfo' element={check ? <MoreInfo /> : <Navigate to="/Login" />} />
             <Route path='/:taskId/TaskDetailsPage' element={check ? <TaskDetailsPage /> : <Navigate to="/Login" />} />
             <Route path='/:taskId/AddDetail' element={check ? <AddDetail /> : <Navigate to="/Login" />} />
+            <Route path='/Charts' element={check ? <Charts /> : <Navigate to="/Login" />} />
           </Routes>
         </AnimatePresence>
       )}
