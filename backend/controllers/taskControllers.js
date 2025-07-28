@@ -188,7 +188,7 @@ exports.handleToggleDone = async (req, res) => {
       return res.status(404).json({ error: "المهمة أو التفصيل غير موجود" });
     }
 
-const Email  = "abdalfatah.aljuaidi@gmail.com"
+const Email  = "Mazen834@gmail.com"
 const link = `https://investment-1-iu3q.onrender.com/${taskId}/TaskDetailsPage`;
 
     await email(
