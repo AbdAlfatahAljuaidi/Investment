@@ -231,14 +231,14 @@ const Charts = () => {
           <ChartCard title="موقع المشروع">
             <Bar data={projectLocationData} />
           </ChartCard>
-
+{/* 
           <ChartCard title="الدولة">
             <Bar data={countryData} />
-          </ChartCard>
-
+          </ChartCard> */}
+{/* 
           <ChartCard title="متوسط مساحة الموقع لكل رمز موقع">
             <Bar data={siteAreaData} />
-          </ChartCard>
+          </ChartCard> */}
 
           <ChartCard title="عدد المستثمرين المهتمين في كل موقع">
             <Bar data={sharedSitesData} />
