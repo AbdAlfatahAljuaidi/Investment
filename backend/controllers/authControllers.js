@@ -145,10 +145,55 @@ const verifyUserToken = async (req, res) => {
 };
 
 
+
+// ✅ Get all users
+const  Getallusers = async (req, res) => {
+  try {
+    const users = await User.find().select('-password'); // بدون الباسورد
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({ message: 'فشل في جلب المستخدمين' });
+  }
+}
+
+
+
+
+const Changeuserrole =  async (req, res) => {
+  try {
+    const { role } = req.body; // لازم يكون boolean
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      { role },
+      { new: true }
+    ).select('-password');
+    res.json(updatedUser);
+  } catch (error) {
+    res.status(500).json({ message: 'فشل في تعديل الصلاحية' });
+  }
+}
+
+
+
+
+
+// ✅ Delete user
+const Deleteuser = async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.params.id);
+    res.json({ message: 'تم الحذف بنجاح' });
+  } catch (err) {
+    res.status(500).json({ message: 'فشل في الحذف' });
+  }
+}
+
   
   module.exports = {
     signupUser,
     loginUser,
     checkAdmin,
-    verifyUserToken
+    verifyUserToken,
+    Getallusers,
+    Changeuserrole,
+    Deleteuser
   };

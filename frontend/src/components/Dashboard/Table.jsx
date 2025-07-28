@@ -107,6 +107,15 @@ const Table = () => {
 >
   📥 تحميل Excel
 </button>
+<Link to={"/Employees"}>
+
+<button
+ 
+  className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded shadow mx-2"
+>
+  الموظفين
+</button>
+</Link>
 
 
 <Link
