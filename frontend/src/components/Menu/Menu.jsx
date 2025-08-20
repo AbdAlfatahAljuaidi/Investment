@@ -38,7 +38,7 @@ const Menu = () => {
       <nav className="flex gap-3">
         {role == true && (
           <button
-            onClick={() => navigate('/dashboard')}
+            onClick={() => navigate('/Dashboard')}
             className="flex items-center gap-2 text-sm bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200"
           >
             <FaTachometerAlt />
