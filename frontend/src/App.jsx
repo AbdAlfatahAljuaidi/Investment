@@ -59,19 +59,31 @@ function App() {
             <Route path='/' element={<SignUp />} />
             <Route path='/Login' element={<Login />} />
             <Route path='/Home' element={<Home />} />
+            <Route path='/Dashboard' element={<Dashboard />} />
+            <Route path='/Table' element={<Table />} />
+            <Route path='/tasks/:id' element={<TaskDetails />} />
+            <Route path='/tasks/edit/:id' element={<EditTask />} />
+            <Route path='/task/:id' element={<Task />} />
+            <Route path='/CreateTask' element={<CreateTask />} />
+            <Route path='/:taskId/AddDetailForm' element={<AddDetailForm />} />
+            <Route path='/:taskId/MoreInfo' element={<MoreInfo />} />
+            <Route path='/:taskId/TaskDetailsPage' element={<TaskDetailsPage />} />
+            <Route path='//:taskId/AddDetail' element={<AddDetail />} />
+            <Route path='/Charts' element={<Charts />} />
+            <Route path='/Employees' element={<Employees />} />
             {/* <Route path='/Dashboard' element={<Dashboard />} /> */}
-            <Route path='/Dashboard' element={check ? <Dashboard /> : <Navigate to="/Login" />} />
+            {/* <Route path='/Dashboard' element={check ? <Dashboard /> : <Navigate to="/Login" />} />
             <Route path='/Table' element={check ? <Table /> : <Navigate to="/Login" />} />
-            <Route path='/tasks/:id' element={check ? <TaskDetails /> : <Navigate to="/Login" />} />
-            <Route path='/tasks/edit/:id' element={check ? <EditTask /> : <Navigate to="/Login" />} />
-            <Route path='/task/:id' element={check ? <Task /> : <Navigate to="/Login" />} />
-            <Route path='/CreateTask' element={check ? <CreateTask /> : <Navigate to="/Login" />} />
-            <Route path='/:taskId/AddDetailForm' element={check ? <AddDetailForm /> : <Navigate to="/Login" />} />
-            <Route path='/:taskId/MoreInfo' element={check ? <MoreInfo /> : <Navigate to="/Login" />} />
+            <Route path='/tasks/:id' element={check ? <TaskDetails /> : <Navigate to="/Login" />} /> */}
+            {/* <Route path='/tasks/edit/:id' element={check ? <EditTask /> : <Navigate to="/Login" />} />
+            <Route path='/task/:id' element={check ? <Task /> : <Navigate to="/Login" />} /> */}
+            {/* <Route path='/CreateTask' element={check ? <CreateTask /> : <Navigate to="/Login" />} />
+            <Route path='/:taskId/AddDetailForm' element={check ? <AddDetailForm /> : <Navigate to="/Login" />} /> */}
+            {/* <Route path='/:taskId/MoreInfo' element={check ? <MoreInfo /> : <Navigate to="/Login" />} />
             <Route path='/:taskId/TaskDetailsPage' element={check ? <TaskDetailsPage /> : <Navigate to="/Login" />} />
             <Route path='/:taskId/AddDetail' element={check ? <AddDetail /> : <Navigate to="/Login" />} />
             <Route path='/Charts' element={check ? <Charts /> : <Navigate to="/Login" />} />
-            <Route path='/Employees' element={check ? <Employees /> : <Navigate to="/Login" />} />
+            <Route path='/Employees' element={check ? <Employees /> : <Navigate to="/Login" />} /> */}
           </Routes>
         </AnimatePresence>
       )}
